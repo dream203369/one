@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>跑马灯</title>
+</head>
+<body>
+<canvas width="800" height="600" style="border:1px solid red"></canvas>
+<script>
+    var canvas = document.querySelector("canvas");
+    var ctx = canvas.getContext("2d");
+
+var timer=setInterval(function(){
+    ctx.beginPath();
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    //绘制一个矩形
+    //封装一个绘制指定的矩形
+    function rect(leftX,leftY,width,height){
+        var rightX=leftX+width;
+        var rightY=leftY;
+
+        var rightBottomX=leftX+width;
+        var rightBottomY=leftY+height;
+
+        var leftBottomX=leftX;
+        var leftBottomY=leftY+height;
+
+
+        ctx.moveTo(leftX,leftY);
+        ctx.lineTo(rightX,rightY);
+        ctx.lineTo(rightBottomX,rightBottomY);
+        ctx.lineTo(leftBottomX,leftBottomY);
+        ctx.closePath();
+        ctx.setLineDash([10,5,2,5]);
+        ctx.lineDashOffset--;
+        ctx.stroke();
+    }
+    rect(100,100,400,300);
+
+},10);
+</script>
+</body>
+</html>
